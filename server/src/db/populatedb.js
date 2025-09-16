@@ -3,59 +3,59 @@ const path = require('path');
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
 const categories = [
-  { title: 'All Posts', description: 'Browse everything', slug: 'all-posts' },
+  { title: 'all posts', description: 'Browse everything', slug: 'all-posts' },
   {
-    title: 'Frontend Development',
+    title: 'frontend development',
     description: 'UI, UX, HTML, CSS, JS frameworks',
     slug: 'frontend',
   },
   {
-    title: 'Backend Development',
+    title: 'backend development',
     description: 'Servers, APIs, business logic',
     slug: 'backend',
   },
   {
-    title: 'Databases',
+    title: 'databases',
     description: 'SQL, NoSQL, data modeling',
     slug: 'databases',
   },
   {
-    title: 'Architecture & APIs',
+    title: 'architecture & api',
     description: 'System design, REST, GraphQL',
     slug: 'architecture-apis',
   },
   {
-    title: 'DevOps & Deployment',
+    title: 'devops & deployment',
     description: 'CI/CD, containers, cloud hosting',
     slug: 'devops-deployment',
   },
   {
-    title: 'Security',
+    title: 'security',
     description: 'Auth, encryption, vulnerabilities',
     slug: 'security',
   },
   {
-    title: 'Testing & QA',
+    title: 'testing & qa',
     description: 'Unit, integration, E2E testing',
     slug: 'testing-qa',
   },
   {
-    title: 'Version Control',
+    title: 'version control',
     description: 'Git, branching strategies, workflows',
     slug: 'version-control',
   },
   {
-    title: 'Mobile Development',
+    title: 'mobile development',
     description: 'iOS, Android, cross-platform tools',
     slug: 'mobile-development',
   },
   {
-    title: 'AI & Machine Learning',
+    title: 'ai & machine learning',
     description: 'Models, data science, tools',
     slug: 'ai-ml',
   },
   {
-    title: 'Career & Interviews',
+    title: 'career & interviews',
     description: 'Job search, resume tips, interview prep',
     slug: 'career-interviews',
   },
