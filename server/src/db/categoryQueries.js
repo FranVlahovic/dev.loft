@@ -1,19 +1,36 @@
 const pool = require('./pool');
 
 async function getAllCategories() {
-  const results = await pool.query('SELECT * FROM categories');
+  const results = await pool.query(`
+    SELECT 
+      c.id, 
+      c.title, 
+      c.description, 
+      c.slug, 
+      COUNT(p.id) AS post_count 
+    FROM categories c 
+    LEFT JOIN posts p ON p.category_id = c.id 
+    GROUP BY c.id, c.title, c.description, c.slug 
+    ORDER BY c.title
+  `);
   return results.rows;
 }
 
-// SELECT ALL WITH POST COUNT
-// SELECT
-//   c.id,
-//   c.title,
-//   c.description,
-//   c.slug,
-//   COUNT(p.id) AS post_count
-// FROM categories c
-// LEFT JOIN posts p ON p.category_id = c.id
-// GROUP BY c.id;
+async function getTopCategories() {
+  const results = await pool.query(`
+    SELECT 
+      c.id, 
+      c.title, 
+      c.description, 
+      c.slug, 
+      COUNT(p.id) AS post_count 
+    FROM categories c 
+    LEFT JOIN posts p ON p.category_id = c.id 
+    GROUP BY c.id, c.title, c.description, c.slug 
+    ORDER BY post_count DESC 
+    LIMIT 3
+  `);
+  return results.rows;
+}
 
-module.exports = { getAllCategories };
+module.exports = { getAllCategories, getTopCategories };
