@@ -9,7 +9,7 @@ router.get('/', categoryController.fetchCategories);
 router.get('/top', categoryController.fetchTopCategories);
 
 // posts
-router.get('/:id/posts', postsController.fetchPostsByCategoryId);
-router.get('/:id/search', postsController.searchPostsByCategory);
+router.get('/:slug/posts', postsController.fetchPostsByCategory);
+router.get('/:slug/search', postsController.searchPostsByCategory);
 
 module.exports = router;
