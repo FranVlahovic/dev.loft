@@ -4,6 +4,7 @@ const {
   getTopPosts,
   getSearchedPosts,
 } = require('../db/postsQueries');
+const { findVote, insertVote, adjustCounters, getPostVotes } = require('../db/votesQueries');
 
 async function fetchAllPosts(req, res) {
   try {
@@ -57,4 +58,41 @@ async function searchPostsByCategory(req, res) {
   }
 }
 
-module.exports = { fetchPostsByCategory, searchPostsByCategory, fetchAllPosts, fetchTopPosts };
+async function voteOnPost(req, res) {
+  try {
+    const postId = req.params.id;
+    const { voteType } = req.body;
+    const { ip } = req;
+
+    const existingVote = await findVote(postId, ip);
+
+    if (!existingVote) {
+      await insertVote(postId, ip, voteType);
+
+      if (voteType === 1) {
+        await adjustCounters(postId, 1, 0);
+      } else {
+        await adjustCounters(postId, 0, 1);
+      }
+    } else if (existingVote.voteType !== voteType) {
+      if (voteType === 1) {
+        await adjustCounters(postId, 1, -1);
+      } else {
+        await adjustCounters(postId, -1, 1);
+      }
+    }
+
+    const updatedVotes = await getPostVotes(postId);
+    res.status(200).json(updatedVotes);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
+module.exports = {
+  fetchPostsByCategory,
+  searchPostsByCategory,
+  fetchAllPosts,
+  fetchTopPosts,
+  voteOnPost,
+};

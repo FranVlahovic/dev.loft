@@ -2,6 +2,7 @@ const { Client } = require('pg');
 const path = require('path');
 const { seedCategories } = require('./seeds/seedCategories');
 const { seedPosts } = require('./seeds/seedPosts');
+const { seedVotes } = require('./seeds/seedVotes');
 
 require('dotenv').config({ path: path.resolve(__dirname, '../../.env') });
 
@@ -14,6 +15,7 @@ async function main() {
 
   await seedCategories(client);
   await seedPosts(client);
+  await seedVotes(client);
 
   await client.end();
 }
