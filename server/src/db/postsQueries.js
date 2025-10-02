@@ -65,4 +65,12 @@ async function getSearchedPosts(slug, query) {
   return result.rows;
 }
 
-module.exports = { getAllPosts, getPostsByCategorySlug, getTopPosts, getSearchedPosts };
+async function insertPost(categoryId, title, content) {
+  const result = await pool.query(
+    'INSERT INTO posts(category_id, title, content) VALUES($1, $2, $3) RETURNING id, category_id, title, content, created_at',
+    [categoryId, title, content]
+  );
+  return result.rows[0];
+}
+
+module.exports = { getAllPosts, getPostsByCategorySlug, getTopPosts, getSearchedPosts, insertPost };

@@ -1,8 +1,10 @@
+const { validationResult } = require('express-validator');
 const {
   getAllPosts,
   getPostsByCategorySlug,
   getTopPosts,
   getSearchedPosts,
+  insertPost,
 } = require('../db/postsQueries');
 const { findVote, insertVote, adjustCounters, getPostVotes } = require('../db/votesQueries');
 
@@ -89,10 +91,32 @@ async function voteOnPost(req, res) {
   }
 }
 
+async function addPost(req, res) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+
+  try {
+    const { categoryId, title, content } = req.body;
+
+    if (!categoryId || !title || !content) {
+      return res.status(400).json({ error: 'All fields are required' });
+    }
+
+    const newPost = await insertPost(categoryId, title, content);
+
+    res.status(201).json(newPost);
+  } catch (error) {
+    res.status(500).json({ error: 'Internal server error' });
+  }
+}
+
 module.exports = {
   fetchPostsByCategory,
   searchPostsByCategory,
   fetchAllPosts,
   fetchTopPosts,
   voteOnPost,
+  addPost,
 };
