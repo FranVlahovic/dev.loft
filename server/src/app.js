@@ -1,5 +1,6 @@
 const express = require('express');
 const dotenv = require('dotenv');
+const cors = require('cors');
 const categoryRouter = require('./routes/categoryRouter');
 const postsRouter = require('./routes/postsRouter');
 
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use(express.static('public'));
+app.use(cors());
 
 app.use('/api/categories', categoryRouter);
 app.use('/api/posts', postsRouter);
