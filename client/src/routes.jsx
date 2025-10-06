@@ -10,6 +10,10 @@ const routes = [
         path: '/',
         element: <Home />,
       },
+      {
+        path: '/:slug/posts',
+        element: <Home />,
+      },
     ],
   },
 ];
