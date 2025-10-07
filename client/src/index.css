@@ -8,19 +8,22 @@
 }
 
 :root {
-  --primary-dark-blue: #15161a;
+  --primary-black: #1e1e1e;
   --primary-white: #ffffff;
-  --primary-red: #5e1021;
-  --primary-gold: #85652b;
+  --primary-grey: #2b2b2b;
+  --primary-red: #ca3e47;
 
-  --primary-gold-icon: brightness(0) saturate(100%) invert(36%) sepia(62%)
-    saturate(461%) hue-rotate(0deg) brightness(96%) contrast(86%);
-  --primary-white-icon: brightness(0) saturate(100%) invert(100%) sepia(0%)
-    saturate(25%) hue-rotate(70deg) brightness(108%) contrast(108%);
+  --primary-icon: brightness(0) saturate(100%) invert(30%) sepia(34%) saturate(6916%)
+    hue-rotate(340deg) brightness(88%) contrast(76%);
 }
 
 img {
   max-width: 100%;
   display: block;
   height: auto;
+}
+
+ul,
+ol {
+  list-style-type: none;
 }

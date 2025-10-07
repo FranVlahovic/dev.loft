@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './Boards.module.css';
 import { Link } from 'react-router-dom';
 
-export default function Boards() {
-  const [categories, setCategories] = useState([]);
+export default function TopBoards() {
+  const [topCategories, setTopCategories] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/categories/')
+    fetch('http://localhost:3000/api/categories/top')
       .then((res) => res.json())
-      .then((data) => setCategories(data));
+      .then((data) => setTopCategories(data));
   }, []);
 
   return (
     <div className={styles.boardsSection}>
-      <h2>boards</h2>
+      <h2>top boards</h2>
       <div className={styles.boardsContainer}>
         <ul>
-          {categories.map((category) => (
+          {topCategories.map((category) => (
             <li key={category.id}>
               <Link to={`/${category.slug}/posts`}>
                 <div className={styles.boardsCard}>

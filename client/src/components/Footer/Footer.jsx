@@ -9,7 +9,7 @@ export default function Footer() {
 
     setTimeout(() => {
       setInstagramNotification(false);
-    }, 3000);
+    }, 5000);
   }
 
   return (
@@ -21,7 +21,7 @@ export default function Footer() {
           </a>
         </li>
         <li>
-          <a onClick={() => displayInstagramNotification}>
+          <a onClick={displayInstagramNotification}>
             <img src="/src/assets/icons/instagram.svg" alt="Instagram Icon" />
           </a>
         </li>
