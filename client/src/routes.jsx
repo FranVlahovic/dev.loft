@@ -1,4 +1,5 @@
 import App from './App';
+import CategoryPosts from './components/CategoryPosts/CategoryPosts';
 import Home from './components/Home/Home';
 
 const routes = [
@@ -12,7 +13,7 @@ const routes = [
       },
       {
         path: '/:slug/posts',
-        element: <Home />,
+        element: <CategoryPosts />,
       },
     ],
   },

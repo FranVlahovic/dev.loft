@@ -14,7 +14,7 @@ export default function Navbar({ category }) {
               <span>&gt;</span>
             </li>
             <li className={styles.navbarLink}>
-              <Link to={`${category.slug}/posts`}>{category.title}</Link>
+              <Link to={`${category.slug}/posts`}>{category.category_title}</Link>
             </li>
           </>
         )}
