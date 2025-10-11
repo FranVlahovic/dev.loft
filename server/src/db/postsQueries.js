@@ -5,7 +5,7 @@ async function getAllPosts() {
         SELECT 
             p.id, p.title, p.content, 
             p.up_votes, p.down_votes, p.created_at, 
-            c.id AS category_id, c.title AS category_title, c.slug AS category_slug
+            c.id AS category_id, c.title AS category_title, c.description AS category_description, c.slug AS category_slug
         FROM posts p
         JOIN categories c ON p.category_id = c.id
         ORDER BY p.up_votes DESC
@@ -19,7 +19,7 @@ async function getPostsByCategorySlug(slug) {
     `
     SELECT 
       p.id, p.title, p.content, p.up_votes, p.down_votes, p.created_at,
-      c.id AS category_id, c.title AS category_title, c.slug AS category_slug
+      c.id AS category_id, c.title AS category_title, c.description AS category_description, c.slug AS category_slug
     FROM posts p
     JOIN categories c ON p.category_id = c.id
     WHERE c.slug = $1
@@ -52,7 +52,7 @@ async function getSearchedPosts(slug, query) {
     `
     SELECT 
       p.id, p.title, p.content, p.up_votes, p.down_votes, p.created_at,
-      c.id AS category_id, c.title AS category_title, c.slug AS category_slug
+      c.id AS category_id, c.title AS category_title, c.description AS category_description, c.slug AS category_slug
     FROM posts p
     JOIN categories c ON p.category_id = c.id
     WHERE c.slug = $1
